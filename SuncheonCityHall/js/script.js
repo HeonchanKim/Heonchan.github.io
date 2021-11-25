@@ -219,7 +219,7 @@ window.addEventListener("load", function () {
 
     // 슬라이드 클릭 이벤트
     slideRightButton.addEventListener("click", function () {
-        if(mainSlide.style.left == "-100%") return false;
+        if(mainSlide.style.left == "-100%" || mainSlide.style.transitionDuration == duration + "ms") return false;
         window.clearInterval(timerId4);
         doSlideRight();
     });
@@ -257,7 +257,8 @@ window.addEventListener("load", function () {
     for(let m = 0; m < slideBullet.length; m++){
         slideBullet[m].addEventListener("click", function (event) {
             event.preventDefault();
-            window.clearInterval(timerId4);
+            if(mainSlide.style.transitionDuration == duration + "ms") return false;
+            // window.clearInterval(timerId4);
             let clickedIndex = m;
             
             // 현재 a요소와 클릭된 a요소의 차이
